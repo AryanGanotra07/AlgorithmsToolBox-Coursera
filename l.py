@@ -1,0 +1,6 @@
+print("Hello")
+print("to to ")
+print("to")
+print("yo")
+print("ik")
+print("adss")

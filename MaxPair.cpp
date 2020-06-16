@@ -16,26 +16,21 @@ long long maxPair(const vector<int>& numbers) {
 	}
 
 long long fastMaxPair(const vector<int>& numbers) {
-	long long result1 = numbers[0];
-	long long result2 = numbers[1];
-	int max_index2 = 1;
+	
+	int max_index2 = -1;
 	int n = numbers.size();
-	int max_index1 = 0;
-	for(int i=1 ; i<n ;++i) {
-		if (numbers[i] > result1) {
-			result1 = numbers[i];
+	int max_index1 = -1;
+	for(int i=0 ; i<n ;++i) {
+		if ((max_index1 == -1) || (numbers[i] > numbers[max_index1]))
 			max_index1 = i;
-		}
 	}
-	for (int i=0; i<n; ++i) {
-		if ((numbers[i]!=result1) && (numbers[i] > result2)) {
-			result2 = numbers[i];
-			max_index2 = i;
-		}
+	for (int j=0; j<n; ++j) {
+		if ((numbers[j] != numbers[max_index1]) && ((max_index2 == -1) || (numbers[j] > numbers[max_index2]))) 
+			max_index2 = j;
 
 	}
 
-	return ((long long) result1 ) *result2;
+	return ((long long) numbers[max_index1])*numbers[max_index2];
 	
 
 }
