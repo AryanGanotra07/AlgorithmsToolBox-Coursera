@@ -15,8 +15,25 @@ def write_responses(result):
     print('\n'.join(result))
 
 def process_queries_d(queries):
-    d = {}
-    
+    result = []
+    contacts = ['-1']*((10**7)+1)
+    for cur_query in queries:
+        if cur_query.type == 'add':
+            # if we already have contact with such number,
+            # we should rewrite contact's name
+            # if contacts[cur_query.number] != -1:
+            #     contacts[cur_query.number] = cur_query
+            # else: # otherwise, just add it
+            contacts[cur_query.number] = cur_query.name
+        elif cur_query.type == 'del':
+            contacts[cur_query.number] = '-1'
+        else:
+            response = 'not found'
+            if contacts[cur_query.number] != '-1':
+                response = contacts[cur_query.number]
+            result.append(response)
+    return result
+
 
 def process_queries(queries):
     result = []
@@ -47,5 +64,5 @@ def process_queries(queries):
     return result
 
 if __name__ == '__main__':
-    write_responses(process_queries(read_queries()))
+    write_responses(process_queries_d(read_queries()))
 
