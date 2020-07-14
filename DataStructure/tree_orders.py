@@ -1,5 +1,3 @@
-# python3
-
 import sys, threading
 sys.setrecursionlimit(10**6) # max depth of recursion
 threading.stack_size(2**27)  # new thread will get stack of such size
@@ -18,24 +16,39 @@ class TreeOrders:
 
   def inOrder(self):
     self.result = []
-    # Finish the implementation
-    # You may need to add a new recursive method to do that
-                
+    self.inOrderTraversal(0)
     return self.result
+
+  def inOrderTraversal(self, index):
+    if (self.left[index] != -1):
+      self.inOrderTraversal(self.left[index])
+    self.result.append(self.key[index])
+    if (self.right[index] != -1):
+      self.inOrderTraversal(self.right[index])
 
   def preOrder(self):
     self.result = []
-    # Finish the implementation
-    # You may need to add a new recursive method to do that
-                
+    self.preOrderTraversal(0)
     return self.result
+	
+  def preOrderTraversal(self, index):
+    self.result.append(self.key[index])
+    if (self.left[index] != -1):
+      self.preOrderTraversal(self.left[index])
+    if (self.right[index] != -1):
+      self.preOrderTraversal(self.right[index])
 
   def postOrder(self):
     self.result = []
-    # Finish the implementation
-    # You may need to add a new recursive method to do that
-                
+    self.postOrderTraversal(0)         
     return self.result
+	
+  def postOrderTraversal(self, index):
+    if (self.left[index] != -1):
+      self.postOrderTraversal(self.left[index])
+    if (self.right[index] != -1):
+      self.postOrderTraversal(self.right[index])
+    self.result.append(self.key[index])
 
 def main():
 	tree = TreeOrders()
